@@ -1,0 +1,14 @@
+{
+  "selected_candidate": "refiner_r0.10_w1.00",
+  "selected_kind": "refiner",
+  "candidate_rate": 0.1,
+  "refiner_weight": 1.0,
+  "mean_repeated_oof_nr5": 0.9809565434565435,
+  "combined_oof_nr5": 0.981018981018981,
+  "combined_oof_tp_at_5pct": 7856,
+  "submission_recommended_by_predeclared_gate": false,
+  "calibration_method": "monotone_logistic",
+  "official_data_only": true,
+  "claim_id_used_as_predictive_feature": false,
+  "external_data_or_weights_used": false
+}

@@ -1,0 +1,11 @@
+ID,Hypothesis,Motivation,Test,Evidence,Status
+H01,Label-neutral ties remove source-order optimism.,F01–F02,constant and burden tie sensitivity,verified before training,SUPPORTED
+H02,Preserving semantic code strings and hierarchy improves representation.,leading-zero audit,corrected V1-like anchor versus V2 features,"code-hierarchy screen=INCONCLUSIVE, contribution=+0.00042; semantic strings remain a verified data-contract correction",INCONCLUSIVE
+H03,Longer regularized CatBoost improves boundary ranking.,F08,two-setting screen then full CV,screen selected depth8_capacity; best mean screen=depth8_capacity; saturated=True; fixed full-CV rounds=2860,SUPPORTED
+H04,"Burden density, concentration, rarity, and structured interactions recover near-boundary fraud.",V1 FP/FN error contrasts,feature-family comparison and error audit,"screen-positive feature families=['F3', 'F4', 'F5']; selected full V2 package delta=+0.01769; family evidence remains two-fold screening",INCONCLUSIVE
+H05,A two-seed CatBoost mean reduces ranking variance.,F05,common OOF seed blend,seed mean minus best seed=+0.00018,INCONCLUSIVE
+H06,A fixed cross-family blend captures complementary fraud.,F04 and OOF disagreement,fixed probability/logit grids,best fixed cross-family blend minus best single=+0.00081,SUPPORTED
+H07,Fold-averaged inference is a safer primary than an unvalidated full refit.,F06,validated fold ensemble plus conditional test-diverse validated-candidate hedge,"fold averaging is the validated inference recipe; V1 artifacts show material fold-average/full-refit portfolio divergence, but supplied test labels cannot rank the two recipes",INCONCLUSIVE
+H08,Location signal is useful in-distribution but less transportable.,F07,primary versus kdkc-held-out stress,unseen-kdkc stress minus primary CatBoost=-0.19025; prior location-removal evidence also large,SUPPORTED
+H09,Monotone calibration improves Brier without changing ranking.,15% calibration weight,outer-fold cross-fitted raw/sigmoid/beta/isotonic,chosen on folds 1–3=raw; selection Brier improvement=+0.000000; confirmation Brier=0.172840; isotonic diagnostic-only,REJECTED
+H10,A direct learning-to-rank model is worth its added complexity.,55% top-5 weight,design review,no query groups; calibration and API risk exceed current evidence,REJECTED

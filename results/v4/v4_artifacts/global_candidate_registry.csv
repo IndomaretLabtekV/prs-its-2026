@@ -1,0 +1,6 @@
+candidate,tp_at_5pct,k,nr_at_5pct,delta_tp_vs_cat_a,fold_wins_vs_cat_a,worst_fold_delta_tp,eligible,selected
+cat_a,7784,8008,0.9720279720279721,0,0,0,True,False
+cat_mean,7795,8008,0.9734015984015985,11,4,-2,True,True
+consensus_55_20_15_10,7769,8008,0.9701548451548452,-15,1,-8,False,False
+consensus_50_20_20_10,7765,8008,0.9696553446553446,-19,1,-9,False,False
+consensus_60_15_15_10,7766,8008,0.9697802197802198,-18,1,-10,False,False

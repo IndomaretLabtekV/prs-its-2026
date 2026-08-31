@@ -1,0 +1,13 @@
+ID,status,evidence or hypothesis,V2 consequence
+F01,VERIFIED,Labels form one fraud block then one legitimate block; only one transition.,source-order tie breaking is invalid
+F02,VERIFIED,Stable V1 ties made a constant baseline NR@5%=1.0 and burden NR@3%=1.0.,correct the shared top-k function and report tie ranges
+F03,VERIFIED,"V1 CatBoost raw OOF: NR@5%=0.970155, AP=0.823402, Brier=0.172186.","strong anchor, not proof of optimality"
+F04,VERIFIED,V1 fixed Cat/XGB probability blends near 0.80 Cat improved all three raw components in artifact reanalysis.,test fixed deployable blends under corrected CV
+F05,VERIFIED,"Alternate Cat seed was highly correlated yet a two-seed mean improved boundary capture, AP, and Brier.",evaluate a V2 seed ensemble
+F06,VERIFIED,Full-refit and fold-average V1 test scores had Spearman≈0.994 but only 91.66% top-5 overlap (167 swaps per side).,treat inference strategy as real portfolio uncertainty
+F07,VERIFIED,Location-feature removal reduced V1 OOF Technical Score by about 0.095; unseen-kdkc stress score was about 0.752.,retain for Kaggle but surface transport risk
+F08,VERIFIED,"All five V1 CatBoost folds stopped at 2,195–2,200 of 2,200 iterations.",test longer/regularized capacity rather than assume convergence
+F09,VERIFIED,V1 XGBoost represented categories with arbitrary ordinal numbers.,replace with fold-fitted one-hot representation
+F10,PLAUSIBLE,"The public gap may reflect ranking, validation, calibration, ensemble, or refit variance.",public score cannot identify affected claims
+F11,REJECTED,High global prediction correlation implies equivalent audit portfolios.,top-5 overlap directly contradicts this
+F12,UNKNOWN,Which inference candidate is best on private labels.,preserve a second file only when runtime diversity is meaningful

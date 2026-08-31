@@ -1,0 +1,3 @@
+candidate,reference,observed_delta,bootstrap_mean_delta,ci_2.5%,ci_97.5%,probability_gain,classification,method
+CatBoost V2 seed 2026,Corrected V1-like anchor,0.017689850776905436,0.017782972210055013,0.015206488839649396,0.02081191484318265,1.0,MATERIAL,conditional exact-signature-cluster bootstrap
+CatBoost V2 seed 2127,Corrected V1-like anchor,0.019052176158691037,0.01926002011879502,0.016768935888338575,0.0221418630971148,1.0,MATERIAL,conditional exact-signature-cluster bootstrap

@@ -1,0 +1,4 @@
+metric,estimate,ci_2.5%,ci_97.5%,method
+Gap_gender,0.00010625925060888048,8.894325264321079e-06,0.0009273060159902797,conditional exact-signature-cluster bootstrap
+Gap_age,0.0011534087568763696,0.000431598873531341,0.0024339155302500596,conditional exact-signature-cluster bootstrap
+ProtectionScore,0.9988465912431236,0.9975660844697499,0.9995545822448281,conditional exact-signature-cluster bootstrap

@@ -1,0 +1,3 @@
+role,candidate,path,reason
+primary,CatBoost V2 seed 2127,/kaggle/working/submission_primary.csv,highest eligible robust OOF evidence under predeclared rule
+secondary,not produced,—,no alternative met both OOF-proximity and diversity safeguards

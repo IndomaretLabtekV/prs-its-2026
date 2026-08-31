@@ -1,0 +1,19 @@
+check,passed,contract
+full competition mode,True,DAC_FAST_MODE must be unset for a submission run
+primary fold count,True,exactly five primary folds
+fold coverage,True,each train row belongs to one known fold
+selection/confirmation partition,True,fold roles are disjoint and exhaustive
+feature contracts,True,all planned feature sets are non-empty
+feature leakage exclusion,True,identifier and label are absent from model features
+feature uniqueness,True,no duplicate feature names
+experiment IDs,True,planned IDs are complete and unique
+eligibility schema rehearsal,True,every planned registry row receives explicit native-Boolean eligibility
+required model libraries,True,CatBoost and XGBoost loaded; LightGBM optional availability=True
+calibration methods,True,isotonic remains diagnostic-only
+selection configuration,True,selection thresholds are finite and non-negative
+fixed boosted rounds,True,outer validation never chooses its own tree count
+sample submission schema,True,claim_id plus fraud_probability with unique complete IDs
+test/sample alignment,True,test rows exactly follow sample order
+output directories,True,submission parents exist and are writable
+bootstrap configuration,True,positive bootstrap repetitions
+Kaggle CUDA,True,enable a Kaggle GPU accelerator

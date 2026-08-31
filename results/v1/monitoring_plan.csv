@@ -1,0 +1,8 @@
+domain,measure,reference,investigate when
+audit effectiveness,"Normalized Recall@5%, AP, precision@5%, fraud captured",OOF NR=0.9699; AP=0.8234,a comparable matured-label window falls outside the OOF fold/bootstrap envelope or degrades repeatedly
+probability reliability,"Brier, reliability curve, calibration intercept/slope",OOF Brier=0.17218; method=sigmoid,observed risk departs systematically from predicted risk or Brier deterioration persists
+policyholder protection,eligible-group FPRs and gender/age gaps at 3/5/7%,5% gaps: gender=0.0002; age=0.0007,"a gap exceeds its historical uncertainty or changes with case mix, labels, or overrides"
+inputs,"missingness, unknown levels, ranges, KS/SMD/JS, schema",authoring adversarial AUC=0.507,a field breaks contract or drift exceeds the training/validation operating envelope
+predictions,"score distribution, top-5% boundary, tie size, alert volume",evaluation mean=0.50084; top-5% boundary=0.93743,distribution or portfolio composition changes without an explained business change
+process,"review time, override, escalation, appeal, confirmation and correction rates",establish during shadow deployment,"workflow burden, disagreement, or successful appeals show a sustained adverse change"
+drift and adaptation,"fraud prevalence, new typologies, feature–outcome relation, explanation mix",establish by versioned outcome window,covariate drift becomes error-linked or concept relationships materially change

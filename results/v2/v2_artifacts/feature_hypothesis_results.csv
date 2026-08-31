@@ -1,0 +1,6 @@
+ID,Hypothesis,Motivation,Implementation,Test,feature_contribution,screen_status
+F1,Preserve semantic codes,Leading zeros encode administrative code structure and must survive loading.,string codes and two-character hierarchy,corrected V1-like anchor versus V2,0.00041847418517348967,INCONCLUSIVE
+F2,Burden density,Similar counts may imply different intensity over different lengths of stay.,burden/procedure/diagnosis per day,feature-family delta and error contrasts,0.0007142047106258875,INCONCLUSIVE
+F3,Code concentration,Total burden misses whether activity is diffuse or concentrated.,entropy and maximum share,feature-family delta and importance,0.0011461030837799369,SCREEN_POSITIVE
+F4,Fold-safe rarity,Rare locations and combinations may mark unusual billing templates.,outer-train frequency maps,V2 model gain and near-boundary analysis,0.000925246400404256,SCREEN_POSITIVE
+F5,Structured interactions,"V1 errors and importance implicate diagnosis, service, facility, severity, and geography jointly.",limited categorical crosses,CatBoost screen and cross-model recovery,0.0012882159674344473,SCREEN_POSITIVE
