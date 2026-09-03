@@ -1,0 +1,20 @@
+Error 100 (no CUDA-capable device is detected) ignored while obtaining device count
+{
+  "mode": "FAST smoke, non-comparable",
+  "python": "3.14.7",
+  "gpus": 0,
+  "catboost_devices": "CPU",
+  "lightgbm_available": false,
+  "hardware": "CPU runtime"
+}
+Behavior 1 metric-neutral top-k boundary cases: PASS
+{'train_rows': 160174, 'test_rows': 40043, 'features': 81, 'proxy_light_features': 71, 'fraud_rate': 0.5007242124189943}
+Behavior 5 proxy-light forbidden-column assertion: PASS
+ fold  train_n  valid_n  valid_fraud_rate  signature_overlap      role
+    1    80087    80087          0.500730                  0 selection
+    2    80087    80087          0.500718                  0 selection
+Behavior 2 exact-signature disjointness: PASS
+Behavior 6 outer target-encoding completeness: PASS
+FOLD MATCH ARTIFACT: False
+task: CPU devices: None | features: 81
+LOGLOSS  fold0: 12.0s NR=0.96254

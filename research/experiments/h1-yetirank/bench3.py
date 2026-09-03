@@ -1,0 +1,114 @@
+"""Bench3: sensitivitas ukuran query.
+  B2: YetiRank CPU, chunk ~8000 baris contiguous (konteks global lebih besar).
+  C2: LightGBM LambdaRank CPU, chunk ~8000 (batas 10k) contiguous.
+  Baseline A (logloss GPU 300iter fold0, NR=0.96187) sebagai pembanding.
+  Env: conda datsci.
+"""
+import json
+import time
+
+import numpy as np
+import pandas as pd
+
+NB = json.load(open('notebooks/V8_Robust_Boundary.ipynb'))
+CELL = {i: ''.join(NB['cells'][i].get('source', [])) for i in [1, 3, 5]}
+NS = {}
+for i in [1, 3, 5]:
+    exec(compile(CELL[i], f'<nb-cell-{i:02d}>', 'exec'), NS)
+
+g = globals()
+for k, v in NS.items():
+    g[k] = v
+art = pd.read_csv('/tmp/opencode/v8/v8_artifacts/primary_fold_assignments.csv')
+FOLD_ID = art['fold'].to_numpy(dtype=int)
+if sorted(np.unique(FOLD_ID).tolist()) == [1, 2, 3, 4, 5]:
+    FOLD_ID = FOLD_ID - 1
+PRIMARY_SPLITS = [(np.flatnonzero(FOLD_ID != f), np.flatnonzero(FOLD_ID == f))
+                  for f in range(5)]
+
+ID_COL, TARGET_COL = NS['ID_COL'], NS['TARGET_COL']
+train_model, y = NS['train_model'], NS['y']
+FULL_FEATURES = NS['FULL_FEATURES']
+CATEGORICAL_COLUMNS = NS['CATEGORICAL_COLUMNS']
+TIE_KEYS = NS['TIE_KEYS']
+nrc = NS['normalized_recall_at_capacity']
+
+ITERS, CHUNK = 300, 8000
+fit_idx, valid_idx = PRIMARY_SPLITS[0]
+yv, tk = y[valid_idx], TIE_KEYS[valid_idx]
+
+
+def catboost_ready(frame, categorical):
+    out = frame.copy()
+    for c in categorical:
+        if c in out:
+            out[c] = out[c].astype('string').fillna('__MISSING__').astype(str)
+    return out
+
+
+CATS = [c for c in FULL_FEATURES if c in CATEGORICAL_COLUMNS]
+
+
+def make_chunks(seed=2127):
+    rng = np.random.RandomState(seed)
+    perm = rng.permutation(len(fit_idx))
+    chunks = np.array_split(fit_idx[perm], max(1, len(fit_idx) // CHUNK))
+    qid = np.empty(len(y), dtype=np.int64)
+    for q, ch in enumerate(chunks):
+        qid[ch] = q
+    order = np.argsort(qid[fit_idx], kind='stable')
+    return fit_idx[order], qid
+
+
+def bench(name, fn):
+    t0 = time.time()
+    try:
+        p = fn()
+        dt = time.time() - t0
+        nr = nrc(yv, np.asarray(p, dtype=float), 0.05, tk)
+        print(f'{name}: {dt:.1f}s NR_fold0={nr:.5f}', flush=True)
+    except Exception as e:
+        print(f'{name}: GAGAL ({type(e).__name__}: {str(e)[:150]})', flush=True)
+
+
+def arm_yetirank_8k():
+    from catboost import CatBoostRanker
+    oi, qid = make_chunks()
+    Xf = catboost_ready(train_model.iloc[oi][FULL_FEATURES], CATS)
+    m = CatBoostRanker(loss_function='YetiRank', allow_writing_files=False,
+                       verbose=False, random_seed=2127, task_type='CPU',
+                       iterations=ITERS, learning_rate=0.03, depth=8,
+                       l2_leaf_reg=8.0, random_strength=0.35,
+                       bootstrap_type='Bayesian', bagging_temperature=0.5,
+                       max_ctr_complexity=2, border_count=128)
+    m.fit(Xf, y[oi], group_id=qid[oi], cat_features=CATS, verbose=False)
+    return m.predict(
+        catboost_ready(train_model.iloc[valid_idx][FULL_FEATURES], CATS))
+
+
+def arm_lgbm_8k():
+    import lightgbm as lgb
+    oi, qid = make_chunks()
+    Xf = train_model.iloc[oi][FULL_FEATURES].copy()
+    Xv = train_model.iloc[valid_idx][FULL_FEATURES].copy()
+    for c in CATS:
+        if c in Xf:
+            Xf[c] = Xf[c].astype('string').fillna('__MISSING__').astype('category')
+            Xv[c] = Xv[c].astype('string').fillna('__MISSING__').astype('category')
+    for c in FULL_FEATURES:
+        if c not in CATS:
+            Xf[c] = pd.to_numeric(Xf[c], errors='coerce').astype('float32')
+            Xv[c] = pd.to_numeric(Xv[c], errors='coerce').astype('float32')
+    groups = np.bincount(qid[oi]).tolist()
+    ds = lgb.Dataset(Xf, label=y[oi], group=groups,
+                     categorical_feature=CATS, free_raw_data=False)
+    m = lgb.train(dict(objective='lambdarank', device='cpu',
+                       num_iterations=ITERS, learning_rate=0.05,
+                       num_leaves=127, min_data_in_leaf=100,
+                       seed=2127, verbose=-1), ds)
+    return m.predict(Xv)
+
+
+bench('B2 yetirank-8k ', arm_yetirank_8k)
+bench('C2 lgbm-rank-8k', arm_lgbm_8k)
+print('BENCH3 DONE')

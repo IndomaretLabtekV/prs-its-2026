@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/research/v9/run_smoke.py", line 13, in <module>
+    exec(compile(''.join(c['source']), f'<v9cell-{i}>', 'exec'), NS)
+  File "<v9cell-11>", line 55, in <module>
+AssertionError
+ERROR conda.cli.main_run:execute(142): `conda run python -u research/v9/run_smoke.py` failed. (See above for error)
+--- exec code cell 1 ---
+{
+  "mode": "FULL competition",
+  "python": "3.11.15",
+  "gpus": 1,
+  "catboost_devices": "0",
+  "lightgbm_available": true,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB"
+}
+{"v9_smoke": true, "v9_folds": 2, "v9_iters": 180}
+--- exec code cell 3 ---
+Behavior 1 metric-neutral top-k boundary cases: PASS
+--- exec code cell 5 ---
+{'train_rows': 160174, 'test_rows': 40043, 'features': 81, 'proxy_light_features': 71, 'fraud_rate': 0.5007242124189943}
+Behavior 5 proxy-light forbidden-column assertion: PASS
+--- exec code cell 7 ---
+Behavior 2 local exact-signature disjointness: PASS
+--- exec code cell 9 ---
+Eval store: /home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/results/v8/results.zip | base store: /home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/results/v7/results.zip
+Artifact folds match local recomputation: True (artifact is authoritative either way)
+folds in play: [0, 1] rows: 64024
+NOTE: -1 TP / -0.000125 NR vs registry from cross-version tie order at the K boundary; within V8 rebuild tolerance, rebuilt scores authoritative.
+Behavior 4 V8 checkpoint V3-control consistency: PASS (NR 0.97290, TP 7791)
+Checkpoint provenance: /home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/results/v8/results.zip
+--- exec code cell 11 ---

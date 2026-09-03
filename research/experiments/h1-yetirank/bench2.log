@@ -1,0 +1,17 @@
+[LightGBM] [Fatal] Number of rows 32022 exceeds upper limit of 10000 for a query
+{
+  "mode": "FULL competition",
+  "python": "3.11.15",
+  "gpus": 1,
+  "catboost_devices": "0",
+  "lightgbm_available": true,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB"
+}
+Behavior 1 metric-neutral top-k boundary cases: PASS
+{'train_rows': 160174, 'test_rows': 40043, 'features': 81, 'proxy_light_features': 71, 'fraud_rate': 0.5007242124189943}
+Behavior 5 proxy-light forbidden-column assertion: PASS
+FOLD: dari artefak V8, 5 fold, overlap by construction
+A logloss-GPU  : 9.1s NR_fold0=0.96187
+B yetirank-chunk: 80.7s NR_fold0=0.92437
+C lgbm-rank-CPU: GAGAL (LightGBMError: Number of rows 32022 exceeds upper limit of 10000 for a query)
+BENCH2 DONE
