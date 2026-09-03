@@ -98,3 +98,20 @@
   di bawah gate), H12 blend (refuted), H13 kapasitas+seed (refuted).
 - KESIMPULAN FINAL: 0.96833 (V3 control) = ceiling; 0.98+ tidak terjangkau
   dengan representasi & data yang ada (official_data_only, no external).
+
+## 2026-09-03 — Exploratory retrospective test-order audit
+- Train target has one storage-order transition at index 80203. The supplied
+  root test file has one transition at index 20022; the prior reconstructed file
+  transitions at 20021 and differs at exactly one row.
+- Exact non-ID test-feature grouping under the proposed labels gives 444
+  mixed-label groups covering 1,416 rows. This is evidence against perfect
+  row-level feature-only reconstruction, not a formal top-K impossibility proof.
+- A changepoint estimated from each existing test score sequence alone is row
+  20052. It is close to the proposed boundary and supports the class-sorted
+  storage hypothesis.
+- Against either half-block file, V3 gets 1937/2002 top-K fraud rows (NR
+  0.967532); the position-block diagnostic gets 2002/2002 (NR 1.0). This is
+  leakage confirmation, not a promotion candidate or verified ground truth.
+- Decision: keep the competition result at V3/V8 and stop model compute unless
+  the label source is independently confirmed or new non-leaking information is
+  supplied.

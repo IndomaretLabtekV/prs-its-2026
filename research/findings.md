@@ -31,7 +31,25 @@ GAGAL lolos gate: keduanya menempel kuat ke ide "boundary jenuh".
   berikutnya harus menyentuh REFINER, bukan model global.
 
 ## Open Questions
-- Apakah menambah fitur V9 ke refiner boundary (bukan ke model global)
-  menembus +0.001? (H10, sedang diuji)
-- Mengapa fold 2/4 lemah — distribusi kovariat, atau isi fold yang memang
-  tersulit? (H11)
+- H10, H11, H12, dan H13 sudah selesai; hasilnya tercatat di
+  `research/research-log.md`.
+- Tidak ada jalur feature-only yang belum diuji dan punya bukti cukup untuk
+  target public LB 0.985 di bawah constraint saat ini.
+
+## Retrospective Test-Order Audit (2026-09-03)
+- `data/train.csv` has one label transition: fraud indices `0..80202`, then
+  legitimate rows. This confirms a storage-order defect in the released train
+  file.
+- The root proposed test file is exactly `1` for indices `0..20021` and `0`
+  thereafter. The earlier reconstructed file differs at one odd-row boundary
+  only (`20021`). Neither is independently verified private ground truth.
+- Exact grouping of the 51 non-ID test features finds 444 mixed-label groups
+  covering 1,416 rows under the proposed labels. This blocks perfect
+  row-level feature-only reconstruction, although it is not by itself a proof
+  that NR@5% cannot equal 1.
+- A score-sequence-only mean changepoint detector estimates row `20052` for
+  every existing submission. This is independent support for class-sorted test
+  storage, but it is still a leakage diagnostic.
+- Retrospective position-block selection captures `2002/2002` top-K rows
+  (`NR@5%=1.0`); V3 captures `1937/2002` (`0.967532`). The former must not be
+  presented as a legitimate model improvement.
