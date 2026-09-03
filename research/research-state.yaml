@@ -1,0 +1,31 @@
+project: prs-its (DAC 2026 fraud detection)
+question: "Bagaimana menaikkan NormalizedRecall@5% OOF melebihi V3 control (0.97303 / LB 0.96833) menuju 0.98+?"
+session: 2026-09-03 resume
+phase: inner-loop (H10 running)
+proxy_metric: pooled OOF NR@5% (kgate: +0.001 = ~8 TP vs V3 control)
+
+state:
+  baseline_best:
+    candidate: V3 control
+    nr_oof: 0.97303
+    tp: 7792
+    lb: 0.96833
+  closed_hypotheses:
+    H1 yetirank: REFUTED (chunked CPU -0.037 NR; query limits GPU 1023/10000)
+    H2 post-hoc subgroup penalty: REFUTED (+1 TP lalu negatif; beda base-rate, bukan bias)
+    V8 surgical rerank (12 challenger): REFUTED (gate_1+gate_2 gagal 12/12)
+    V9 global interaksi (C2/C3): REFUTED (terbaik 0.97265, gate_4 fold loss -11)
+    V9 mixed-weight: CANCELLED saat smoke (flag grup-campur vakuous)
+  active_hypotheses:
+    H10 refiner-v2: refiner boundary V3 (top-10% pool, 900 iter) diberi fitur
+        interaksi V9 -> rerank boundary dengan pengetahuan subgroup
+        -> prediksi NR >= 0.97303 + 0.001. STATUS: PROTOCOL DIKUNCI.
+    H11 fold-2/4 diagnosis: cari penyebab fold 2 (-8..-11 TP) -> laporan.
+    H12 boundary-local rank blend V3-control x Interact-2127 (cadangan).
+  constraints:
+    - OOF-only selection, no LB probing, claim_id/row bukan fitur
+    - gerbang seleksi: 8 gate V9 (stress dihapus, tidak ada reranker stress)
+    - fold artifact otoritatif (local recompute match)
+    - conda datsci: catboost 1.2.10 GPU (RTX 4050)
+
+next: H10 evaluation -> if delta >= +0.001: V10 notebook (change refiner features only) -> Kaggle.
