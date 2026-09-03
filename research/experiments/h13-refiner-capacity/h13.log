@@ -1,0 +1,27 @@
+{
+  "mode": "FULL competition",
+  "python": "3.11.15",
+  "gpus": 1,
+  "catboost_devices": "0",
+  "lightgbm_available": true,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB"
+}
+Behavior 1 metric-neutral top-k boundary cases: PASS
+{'train_rows': 160174, 'test_rows': 40043, 'features': 81, 'proxy_light_features': 71, 'fraud_rate': 0.5007242124189943}
+Behavior 5 proxy-light forbidden-column assertion: PASS
+folds ok, overlap by construction
+5 base preds loaded
+meta built (160174, 11)
+stack OOF built
+pool size: 16022
+control-refiner-v1: 166s NR=0.97328 TP=7794 AP=0.82590
+refiner-v2-V9: 171s NR=0.97353 TP=7796 AP=0.82580
+DELTA NR: +0.00025 | DELTA TP: +2
+H10 DONE
+refiner-v2-it1800: 342s NR=0.97253 TP=7788 AP=0.82573
+refiner-v2-it2700: 516s NR=0.97228 TP=7786 AP=0.82551
+refiner-v2-seedens: NR=0.97315 TP=7793 AP=0.82585
+DELTA it1800: -0.00100 | TP -8
+DELTA it2700: -0.00125 | TP -10
+DELTA seedens: -0.00037 | TP -3
+H13 DONE

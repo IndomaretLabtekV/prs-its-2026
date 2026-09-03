@@ -79,3 +79,22 @@
 ## DIRECTION: CONCLUDE (negative-result matrix lengkap) — open sisa H13 (refiner
 ## seed-ensemble) hanya jika user ingin 1 percobaan terakhir berbasis bukti;
 ## rekomendasi gue: tidak.
+
+## 2026-09-03 — accuracy-improvement-loop: diagnosa ulang (Step 1)
+- Re-audit leakage: 0 (17,906 identik = label noise, split bergrup benar).
+- FP top-K: umur 41.3 vs TP 39.7 (kecil); LOS FP 0.63 vs TP 0.41 (muncul sinyal
+  LOS panjang pada FP — tapi rentang korelasi tidak besar; tanpa konfirmasi).
+- Gap yang belum pernah disentuh: V3 refiner 900 iter TIDAK PERNAH di-tune
+  (kapasitas) sejak konsepnya di V3; H10 membuktikan fitur memberi +2 TP,
+  berarti ruang perbaikan masih ada di sisi kapasitas/seed refiner.
+
+## 2026-09-03 — H13 REFUTED: kapasitas refiner = 900 adalah optimum
+- it1800: 0.97253 (-8 TP) | it2700: 0.97228 (-10 TP) | seed-ens: 0.97315 (-3 TP).
+- Intepretasi: refiner @pool 16k OVERFIT dengan iterasi lanjutan; 900 ITER = optimum.
+- Final standings (semua levers diuji): fitur +2 (H10) > ctrl rebuild 0 TP >
+  seed-ens -3 > fitur-global (V9) -3..-4 > blend -2..-4 > iter-lain -8..-10.
+- MATRIX LENGKAP dari semua tembakan: V8 surgical (12 challenger 0 lolos gate),
+  V9 global (0 lolos), V9 mixed (dibatalkan, vakuous), H10 refiner-v2 (+2 TP,
+  di bawah gate), H12 blend (refuted), H13 kapasitas+seed (refuted).
+- KESIMPULAN FINAL: 0.96833 (V3 control) = ceiling; 0.98+ tidak terjangkau
+  dengan representasi & data yang ada (official_data_only, no external).
