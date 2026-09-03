@@ -57,3 +57,25 @@
   (registry 7792 vs recompute lokal 7791) -> assert diganti toleransi +-8 TP.
 - Langkah berikut: upload notebook + results/v8/results.zip + results/v7/results.zip
   sebagai dataset Kaggle, run T4x2, submit bila ada kandidat lolos gate.
+
+## 2026-09-03 — OUTER LOOP: H10/H11/H12 selesai (resume autoresearch)
+- H10 refiner-v2 (fitur V9 di refiner V3): control rebuild NR=0.97328 TP=7794,
+  refiner-v2 NR=0.97353 TP=7796 -> DELTA +0.00025 / +2 TP. ARAH BENAR tapi
+  < gate 0.001. Menarik: rebuild bersih (5-base stack, iter 900) menghasilkan
+  7794 vs registry 7792 (tie-break rebuild) — konsistensi toleransi OK.
+- H11 fold 2/4: distribusi kovariat antar fold IDENTIK (top kdkc/dati2/typeppk/
+  cmg/umur/los sama) -> lemahnya fold 2/4 SIFAT SUBSET, bukan bias penyebaran.
+  Tidak ada perbaikan fold yang sah.
+- H12 boundary-rank blend V3 x refiner-v2: w terbaik di selection=0.25
+  (selNR 0.97500) GAGAL transfer ke confirmation (confNR 0.97070 < ctrl 0.97194).
+  REFUTED.
+- Ceiling kuantitatif: grup identik-berulang berlabel campur = satu-satunya TP
+  yang mustahil dipisahkan; dengan feature-ceiling, headroom oracle +216 TP TAPI
+  oracle = memorisasi (hampir semua grup singleton -> tidak actionable).
+- VERDICT: 5 tembakan independen (V8 surgical, V9 global, V9 mixed-canceled,
+  H10 refiner-v2, H12 blend) SEMUA memuncak di +2 TP vs kontrol. 0.96833 = hasil
+  final yang layak; 0.98+ bukan risiko yang bisa dibeli dengan pendekatan ini.
+
+## DIRECTION: CONCLUDE (negative-result matrix lengkap) — open sisa H13 (refiner
+## seed-ensemble) hanya jika user ingin 1 percobaan terakhir berbasis bukti;
+## rekomendasi gue: tidak.

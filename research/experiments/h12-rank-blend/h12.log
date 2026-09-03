@@ -1,0 +1,20 @@
+{
+  "mode": "FULL competition",
+  "python": "3.11.15",
+  "gpus": 1,
+  "catboost_devices": "0",
+  "lightgbm_available": true,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB"
+}
+Behavior 1 metric-neutral top-k boundary cases: PASS
+{'train_rows': 160174, 'test_rows': 40043, 'features': 81, 'proxy_light_features': 71, 'fraud_rate': 0.5007242124189943}
+Behavior 5 proxy-light forbidden-column assertion: PASS
+stack rank rebuilt
+   w   sel_NR  sel_TP  conf_NR  conf_TP
+0.00 0.974583    4678 0.971945     3118
+0.25 0.975000    4680 0.970698     3114
+0.50 0.974375    4677 0.971010     3115
+0.75 0.974792    4679 0.971945     3118
+1.00 0.974792    4679 0.971633     3117
+best on selection: w=0.25 conf_NR=0.97070 (ctrl w0 conf_NR=0.97195)
+H12 DONE

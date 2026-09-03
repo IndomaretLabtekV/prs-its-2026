@@ -1,0 +1,64 @@
+--- exec code cell 1 ---
+{
+  "mode": "FULL competition",
+  "python": "3.11.15",
+  "gpus": 1,
+  "catboost_devices": "0",
+  "lightgbm_available": true,
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB"
+}
+{"v9_smoke": true, "v9_folds": 2, "v9_iters": 180}
+--- exec code cell 3 ---
+Behavior 1 metric-neutral top-k boundary cases: PASS
+--- exec code cell 5 ---
+{'train_rows': 160174, 'test_rows': 40043, 'features': 81, 'proxy_light_features': 71, 'fraud_rate': 0.5007242124189943}
+Behavior 5 proxy-light forbidden-column assertion: PASS
+--- exec code cell 7 ---
+Behavior 2 local exact-signature disjointness: PASS
+--- exec code cell 9 ---
+Eval store: /home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/results/v8/results.zip | base store: /home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/results/v7/results.zip
+Artifact folds match local recomputation: True (artifact is authoritative either way)
+folds in play: [0, 1] rows: 64024
+NOTE: -1 TP / -0.000125 NR vs registry from cross-version tie order at the K boundary; within V8 rebuild tolerance, rebuilt scores authoritative.
+Behavior 4 V8 checkpoint V3-control consistency: PASS (NR 0.97290, TP 7791)
+Checkpoint provenance: /home/athilla/Documents/IF_ITB/Lomba/DAC-PRS-ITS/prs-its/results/v8/results.zip
+--- exec code cell 11 ---
+V9 features: 85 categorical: 23
+Behavior 5b V9 feature quarantine (allowed columns, finite): PASS
+--- exec code cell 13 ---
+v9_seed3407 pooled-masked NR: 0.95314
+v9_interact2127 pooled-masked NR: 0.95345
+v9_interact2026 pooled-masked NR: 0.95439
+Behavior 6 three-arm roster complete: PASS
+--- exec code cell 15 ---
+Behavior 8 candidate registry predeclared uniqueness: PASS (4 candidates)
+    candidate  gate_1  gate_2  gate_3  gate_4  gate_5  gate_6  gate_7  gate_8
+   V3 control   False   False    True    True    True    True   False    True
+   Seed-mean3   False   False    True   False   False   False   False   False
+Interact-2127   False   False    True   False   False   False   False   False
+Interact-2026   False   False    True   False   False   False   False   False
+--- exec code cell 17 ---
+Behavior 9 deterministic promotion and V3 fallback: PASS
+No eligible challenger. Challenger failed-gate counts: {'gate_1': 3, 'gate_2': 3, 'gate_3': 0, 'gate_4': 3, 'gate_5': 3, 'gate_6': 3, 'gate_7': 3, 'gate_8': 3}
+Candidate-specific failed gates: {'Seed-mean3': ['gate_1', 'gate_2', 'gate_4', 'gate_5', 'gate_6', 'gate_7', 'gate_8'], 'Interact-2127': ['gate_1', 'gate_2', 'gate_4', 'gate_5', 'gate_6', 'gate_7', 'gate_8'], 'Interact-2026': ['gate_1', 'gate_2', 'gate_4', 'gate_5', 'gate_6', 'gate_7', 'gate_8']}
+Behavior 10 submission schema/order/uniqueness/range/finiteness: PASS
+Fold diagnostic (report-only, no gating power):
+candidate  Interact-2026  Interact-2127  Seed-mean3  V3 control
+fold                                                           
+1.0                -32.0          -28.0        -8.0         0.0
+2.0                -30.0          -36.0       -14.0         0.0
+          n  fraud_rate
+fold                   
+0     32002    0.503625
+1     32022    0.499500
+2     31977    0.499672
+3     32141    0.497744
+4     32032    0.503091
+{
+  "selected_candidate": "V3 control",
+  "mode": "SMOKE run, non-comparable",
+  "submission": "/tmp/submission_v9.csv",
+  "output_dir": "/tmp/dac2026_v9_artifacts",
+  "registry_rows": 4
+}
+SMOKE V9 DONE

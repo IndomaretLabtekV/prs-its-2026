@@ -1,7 +1,7 @@
 project: prs-its (DAC 2026 fraud detection)
 question: "Bagaimana menaikkan NormalizedRecall@5% OOF melebihi V3 control (0.97303 / LB 0.96833) menuju 0.98+?"
 session: 2026-09-03 resume
-phase: inner-loop (H10 running)
+phase: OUTER LOOP done - CONCLUDE
 proxy_metric: pooled OOF NR@5% (kgate: +0.001 = ~8 TP vs V3 control)
 
 state:
@@ -28,4 +28,4 @@ state:
     - fold artifact otoritatif (local recompute match)
     - conda datsci: catboost 1.2.10 GPU (RTX 4050)
 
-next: H10 evaluation -> if delta >= +0.001: V10 notebook (change refiner features only) -> Kaggle.
+next: (recommended) no further compute; V10 = refiner-v2 below gate -> if delta >= +0.001: V10 notebook (change refiner features only) -> Kaggle.

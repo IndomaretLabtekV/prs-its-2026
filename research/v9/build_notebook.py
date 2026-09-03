@@ -333,7 +333,11 @@ print(REGISTRY[['candidate'] + [f'gate_{i}' for i in range(1, 9)]].to_string(ind
 '''
 
 # ---- Cell 17: selection, calibration, submission, diagnostics ----
-c17 = '''GATE_COLUMNS = [f'gate_{i}' for i in range(1, 9)]
+c17 = '''def probability_logit(values):
+    p = np.clip(np.asarray(values, dtype=float), 1e-6, 1 - 1e-6)
+    return np.log(p / (1 - p))
+
+GATE_COLUMNS = [f'gate_{i}' for i in range(1, 9)]
 challenger_rows = REGISTRY[REGISTRY.family.isin(['seed-mean', 'interact'])]
 eligible = challenger_rows[challenger_rows[GATE_COLUMNS].all(axis=1)].copy()
 complexity = {'seed-mean': 0, 'interact': 1}
