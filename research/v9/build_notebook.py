@@ -80,10 +80,24 @@ def ckpt_roots():
 
 def open_ckpt(path):
     if path.is_dir():
-        return {'names': {p.name for p in path.iterdir()}, 'read': lambda name: path.joinpath(name).read_bytes()}
+        return {'names': {p.name for p in path.iterdir() if p.is_file()}, 'read': lambda name, _p=path: (_p / name).read_bytes()}
     archive = zipfile.ZipFile(path)
     return {'names': {Path(n).name for n in archive.namelist() if not n.endswith('/')},
             'read': lambda name: archive.read(next(n for n in archive.namelist() if n.endswith('/' + name) or n == name))}
+
+def scan_flat_dirs():
+    found = []
+    for root in [Path('/kaggle/input'), Path.cwd()]:
+        if not root.exists():
+            continue
+        for p in [root] + sorted([q for q in root.rglob('*') if q.is_dir()]):
+            try:
+                names = {x.name for x in p.iterdir() if x.is_file()}
+            except OSError:
+                continue
+            if V9_EVAL_FILES <= names or V9_BASE_FILES <= names or 'v8_scores.npz' in names:
+                found.append((p, {'names': names, 'read': lambda name, _p=p: (_p / name).read_bytes()}))
+    return found
 
 CKPT_STORE, BASE_STORE, ARTIFACT_PROVENANCE = None, None, None
 _eval_cands, _base_cands = [], []
@@ -96,8 +110,14 @@ for _cand in ckpt_roots():
         _eval_cands.append((_cand, _store))
     if V9_BASE_FILES <= _store['names']:
         _base_cands.append((_cand, _store))
+for _cand, _store in scan_flat_dirs():
+    if V9_EVAL_FILES <= _store['names'] and all(str(_cand) != str(e[0]) for e in _eval_cands):
+        _eval_cands.append((_cand, _store))
+    if V9_BASE_FILES <= _store['names'] and all(str(_cand) != str(e[0]) for e in _base_cands):
+        _base_cands.append((_cand, _store))
 if not _eval_cands:
-    raise RuntimeError('No V8 eval store found (need v8_scores.npz, fold assignments, registry)')
+    _near = [str(p) for p, s in scan_flat_dirs() if 'v8_scores.npz' in s['names']]
+    raise RuntimeError('No V8 eval store found (need v8_scores.npz, fold assignments, registry). Dirs containing v8_scores.npz: %s' % (_near or 'none under /kaggle/input'))
 if not _base_cands:
     raise RuntimeError('No base-prediction store found (need predictions_catboost_v3_seed_2026/2127.npz, e.g. results/v7/results.zip)')
 CKPT_STORE, ARTIFACT_PROVENANCE = _eval_cands[0][1], str(_eval_cands[0][0])
