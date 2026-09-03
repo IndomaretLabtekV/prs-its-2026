@@ -205,7 +205,7 @@ for col in V9_NEW:
 pd.DataFrame(audit_rows).to_csv(OUTPUT_DIR / 'v9_feature_audit.csv', index=False)
 assert all(c in train_v9 and c in test_v9 for c in V9_NEW)
 assert not any(('claim_id' in c or 'row' in c) for c in V9_NEW)
-assert all(np.isfinite(pd.to_numeric(train_v9[c], errors='coerce').fillna(0)) for c in V9_NEW)
+assert all(bool(np.isfinite(pd.to_numeric(train_v9[c], errors='coerce').fillna(0)).all()) for c in V9_NEW)
 V9_FEATURES = [c for c in FULL_FEATURES] + V9_NEW
 V9_CATS = [c for c in V9_FEATURES if c in CATEGORICAL_COLUMNS or str(train_v9[c].dtype) in {'object', 'string'}]
 print('V9 features:', len(V9_FEATURES), 'categorical:', len(V9_CATS))
