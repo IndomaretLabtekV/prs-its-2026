@@ -29,12 +29,21 @@ GAGAL lolos gate: keduanya menempel kuat ke ide "boundary jenuh".
 - Semua hyperprameter = warisan V7/V8; hyperparameter sweep bukan tuas di sini.
 - Refiner boundary (V3) lebih kuat dari model global + fitur baru: target
   berikutnya harus menyentuh REFINER, bukan model global.
+- Positive-cost refiner H15 gagal di semua arm: weight 1.25/1.50/2.00 memberi
+  -9/-12/-11 TP terhadap H10 V9, dengan 0/0/1 fold wins. Cost weighting
+  mengubah ordering pool secara merugikan, bukan memulihkan boundary positives.
+- Boundary-focused sample weighting H16 lebih buruk lagi: alpha 1/3/7 memberi
+  -12/-27/-31 TP, dengan 1/2/0 fold wins. Jadi H15 bukan sekadar salah memilih
+  global class cost; memberi bobot lebih pada boundary juga mengacaukan local
+  ordering.
 
 ## Open Questions
-- H10, H11, H12, dan H13 sudah selesai; hasilnya tercatat di
+- H10, H11, H12, H13, H15, dan H16 sudah selesai; hasilnya tercatat di
   `research/research-log.md`.
 - Tidak ada jalur feature-only yang belum diuji dan punya bukti cukup untuk
-  target public LB 0.985 di bawah constraint saat ini.
+  target public LB 0.985 di bawah constraint saat ini. H15 juga menutup
+  variasi objective cost-sensitive dan H16 menutup variasi boundary-focused
+  weighting yang paling murah untuk boundary refiner.
 
 ## Retrospective Test-Order Audit (2026-09-03)
 - `data/train.csv` has one label transition: fraud indices `0..80202`, then

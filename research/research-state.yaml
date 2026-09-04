@@ -1,7 +1,7 @@
 project: prs-its (DAC 2026 fraud detection)
 question: "Bisakah public LB mencapai >=0.985 dengan official-data-only tanpa claim_id atau row-position leakage?"
 session: 2026-09-03 resume
-phase: RETROSPECTIVE ORDER AUDIT done - CONCLUDE
+phase: H16 COMPLETE - CONCLUDE
 proxy_metric: "public LB target >=0.985; local proxy pooled OOF NR@5%"
 
 state:
@@ -20,6 +20,8 @@ state:
     H11 fold-2/4 diagnosis: NO-FIX (fold lemah adalah subset sulit)
     H12 boundary rank blend: REFUTED (gagal confirmation)
     H13 refiner capacity/seed: REFUTED (900 iter optimum; lanjutan overfit)
+    H15 positive-cost boundary refiner: REFUTED (-9 to -12 TP; all gates failed)
+    H16 boundary-focused refiner: REFUTED (-12 to -31 TP; all gates failed)
   active_hypotheses: {}
   retrospective_audit:
     H14 test-label order: exploratory; train and both proposed test files have

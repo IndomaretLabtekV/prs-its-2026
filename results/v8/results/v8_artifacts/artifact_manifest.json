@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-09-03T07:49:14Z",
+  "mode": "FULL competition",
+  "files": [
+    "base_fold_metrics.csv",
+    "base_model_summary.csv",
+    "hierarchical_target_estimates.npz",
+    "meta_features.npz",
+    "primary_fold_assignments.csv",
+    "primary_fold_assignments_summary.csv",
+    "selected_config.json",
+    "stack_comparison.csv",
+    "stack_fold_comparison.csv",
+    "submission_v8.csv",
+    "v8_candidate_registry.csv",
+    "v8_primary_fold_deltas.csv",
+    "v8_scores.npz",
+    "v8_stress_metrics.csv",
+    "v8_test_churn.csv"
+  ],
+  "artifact_provenance": "/kaggle/input/datasets/athillazaidan/v8-checkpoint/v8_artifacts",
+  "official_data_only": true
+}

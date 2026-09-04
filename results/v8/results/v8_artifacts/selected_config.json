@@ -1,0 +1,240 @@
+{
+  "selected_candidate": "V3 control",
+  "selection_reason": "no challenger passed all ten promotion gates; V3 control selected",
+  "mode": "FULL competition",
+  "official_data_only": true,
+  "config": {
+    "seed": 2026,
+    "folds": 5,
+    "stress_folds": 5,
+    "inner_folds": 3,
+    "fast_mode": false,
+    "cat_iterations": 2860,
+    "xgb_estimators": 2600,
+    "lgbm_estimators": 2600,
+    "logistic_max_iter": 700,
+    "refiner_iterations": 900,
+    "hn_iterations": 700,
+    "candidate_pool_rate": 0.1,
+    "hn_legitimate_weight": 12.0,
+    "te_alpha": 50.0,
+    "hn_te_alpha": 12.0,
+    "action_bands": [
+      [
+        0.04,
+        0.065
+      ],
+      [
+        0.035,
+        0.07
+      ]
+    ],
+    "surgical_weights": [
+      0.35,
+      0.6,
+      0.85
+    ],
+    "specialist_full_seeds": [
+      2026,
+      2127,
+      3407
+    ],
+    "min_nr5_gain": 0.001,
+    "min_fold_wins": 3,
+    "min_confirmation_gain": 0,
+    "max_worst_fold_loss": -2.0,
+    "min_ap_delta": -0.001,
+    "max_oof_churn": 0.08,
+    "min_gain_per_100_swaps": 1.0,
+    "max_test_churn": 0.1,
+    "min_nonfraud_group": 100
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.12.90+-x86_64-with-glibc2.35",
+    "gpus": 2,
+    "catboost_devices": "0:1",
+    "hardware": "Tesla T4, 15360 MiB; Tesla T4, 15360 MiB",
+    "lightgbm_available": true
+  },
+  "primary_metrics": {
+    "candidate": "V3 control",
+    "NormalizedRecall@5%": 0.973026973026973,
+    "AveragePrecision": 0.8251201688053671,
+    "fraud_captured": 7792,
+    "legitimate_audits": 216,
+    "ProtectionScore": 0.9985685994978012,
+    "Gap_gender": 4.773597533251498e-05,
+    "Gap_age": 0.0014314005021989,
+    "family": "control",
+    "band": NaN,
+    "weight": NaN,
+    "primary_NR5_delta": 0.0,
+    "AP_delta": 0.0,
+    "fold_wins": 0,
+    "confirmation_tp_gain": 0,
+    "worst_fold_tp_delta": 0.0,
+    "one_way_swaps": 0,
+    "oof_churn": 0.0,
+    "overlap": 1.0,
+    "tp_gain_per_100_swaps": 0.0,
+    "test_churn": 0.0,
+    "kdkc_stress_delta": 0.0,
+    "dati2_stress_delta": 0.0,
+    "min_stress_delta": 0.0,
+    "gate_1": false,
+    "gate_2": false,
+    "gate_3": true,
+    "gate_4": true,
+    "gate_5": true,
+    "gate_6": true,
+    "gate_7": false,
+    "gate_8": true,
+    "gate_9": true,
+    "gate_10": true
+  },
+  "base_roster": [
+    "CatBoost V3 seed 2127",
+    "CatBoost V3 seed 2026"
+  ],
+  "fast_mode_roster": {
+    "base_models": [
+      "CatBoost V3 seed 2127",
+      "CatBoost V3 seed 2026"
+    ],
+    "specialist_seeds": [
+      2026,
+      2127,
+      3407
+    ],
+    "folds": 5,
+    "stress_folds": 5,
+    "non_comparable": false
+  },
+  "promotion_gates": {
+    "gate_1": false,
+    "gate_2": false,
+    "gate_3": true,
+    "gate_4": true,
+    "gate_5": true,
+    "gate_6": true,
+    "gate_7": false,
+    "gate_8": true,
+    "gate_9": true,
+    "gate_10": true
+  },
+  "challenger_failed_gate_counts": {
+    "gate_1": 12,
+    "gate_2": 12,
+    "gate_3": 9,
+    "gate_4": 8,
+    "gate_5": 0,
+    "gate_6": 4,
+    "gate_7": 11,
+    "gate_8": 0,
+    "gate_9": 4,
+    "gate_10": 3
+  },
+  "challenger_failed_gates": {
+    "HN full band1 w0.35": [
+      "gate_1",
+      "gate_2",
+      "gate_9"
+    ],
+    "HN full band1 w0.60": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_7",
+      "gate_9"
+    ],
+    "HN full band1 w0.85": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_6",
+      "gate_7"
+    ],
+    "HN full band2 w0.35": [
+      "gate_1",
+      "gate_2",
+      "gate_7",
+      "gate_9"
+    ],
+    "HN full band2 w0.60": [
+      "gate_1",
+      "gate_2",
+      "gate_7",
+      "gate_9"
+    ],
+    "HN full band2 w0.85": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_6",
+      "gate_7",
+      "gate_10"
+    ],
+    "HN proxy-light band1 w0.35": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_7",
+      "gate_10"
+    ],
+    "HN proxy-light band1 w0.60": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_7",
+      "gate_10"
+    ],
+    "HN proxy-light band1 w0.85": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_6",
+      "gate_7"
+    ],
+    "HN proxy-light band2 w0.35": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_7"
+    ],
+    "HN proxy-light band2 w0.60": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_7"
+    ],
+    "HN proxy-light band2 w0.85": [
+      "gate_1",
+      "gate_2",
+      "gate_3",
+      "gate_4",
+      "gate_6",
+      "gate_7"
+    ]
+  },
+  "artifact_provenance": "/kaggle/input/datasets/athillazaidan/v8-checkpoint/v8_artifacts",
+  "artifact_fold_assignment_matches_current_primary": true,
+  "claim_id_predictive_feature": false,
+  "row_position_predictive_feature": false,
+  "resumed_from_v8_checkpoint": true,
+  "checkpoint_provenance": "/kaggle/input/datasets/athillazaidan/v8-checkpoint/v8_artifacts",
+  "v3_control_rebuild_delta": {
+    "normalized_recall_delta": -0.00012487512487513452,
+    "tp_delta": -1
+  },
+  "calibration": "post-ranking monotone sigmoid",
+  "candidate_count": 14,
+  "non_comparable_fast_mode": false
+}

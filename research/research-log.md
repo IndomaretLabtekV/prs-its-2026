@@ -115,3 +115,32 @@
 - Decision: keep the competition result at V3/V8 and stop model compute unless
   the label source is independently confirmed or new non-leaking information is
   supplied.
+
+## 2026-09-04 - H15 positive-cost boundary refiner REFUTED
+- Locked protocol ran successfully on the authoritative V8 five-fold splits,
+  using the frozen H10 V9 candidate pool and no reconstructed test labels.
+- Positive weights 1.25, 1.50, and 2.00 produced NR@5% 0.9724026,
+  0.9720280, and 0.9721528, with TP deltas -9, -12, and -11 versus H10 V9.
+- Fold TP deltas were [-2,-3,0,-1,-1], [-1,0,-5,0,0], and [0,-2,1,-3,-4].
+  Every arm failed the pooled, NR, fold-win, and worst-fold promotion gates.
+- Interpretation: class weighting changes the high-risk-pool ordering in a
+  harmful direction; it does not recover the missing top-k positives.
+- Decision: no H15 submission and no wider weight sweep. V3/V8 remains the
+  best defensible official-data-only result; model compute is concluded unless
+  organizer-confirmed labels or new non-leaking information arrives.
+
+## 2026-09-04 - H16 boundary-focused refiner REFUTED
+- Locked H16 ran successfully on the authoritative V8 five-fold splits with
+  frozen H10 V9 features, stack, candidate pool, and seeds. No test labels,
+  row-order signal, or test submission were used.
+- Boundary sample weights with alpha 1, 3, and 7 produced NR@5% 0.9720280,
+  0.9701548, and 0.9696553, with TP deltas -12, -27, and -31 versus H10 V9.
+- Fold TP deltas were [-3,-3,-4,1,-6], [1,2,-9,-6,-14], and
+  [-4,-1,-12,-10,-6]. All arms failed pooled TP, NR, fold-win, and worst-fold
+  gates; AP stayed within the allowed degradation limit.
+- Interpretation: emphasizing the nominal boundary destabilizes local
+  ordering, and the effect worsens with alpha. This closes the boundary-focused
+  weighting branch and makes a wider alpha/band sweep unjustified.
+- Decision: no H16 submission. V3/V8 remains the best defensible
+  official-data-only result; model compute is concluded unless organizer-
+  confirmed labels or new non-leaking information arrives.
