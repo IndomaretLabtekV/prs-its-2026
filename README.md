@@ -6,8 +6,8 @@ The repository covers both rounds of the competition:
 
 | Round | Problem | Data | Metric | Deliverables |
 |---|---|---|---|---|
-| [Preliminary](#preliminary-round--healthcare-claim-fraud) | Rank healthcare insurance claims for a 5% audit budget | 160,174 train / 40,043 test claims | Normalized Recall@5% | [notebook](preliminary/notebook.ipynb) · [answer sheet](preliminary/report.pdf) |
-| [Final](#final-round--life-insurance-churn) (3rd place) | Predict policy churn for a life-insurance portfolio | 5,000 policies, 4,704 customers | ROC AUC | [notebook](final/notebook.ipynb) · [report](final/report.pdf) |
+| [Preliminary](#preliminary-round--healthcare-claim-fraud) | Rank healthcare insurance claims for a 5% audit budget | 160,174 train / 40,043 test claims | Normalized Recall@5% | [notebook](preliminary/notebook.ipynb), [answer sheet](preliminary/report.pdf) |
+| [Final](#final-round--life-insurance-churn) (3rd place) | Predict policy churn for a life-insurance portfolio | 5,000 policies, 4,704 customers | ROC AUC | [notebook](final/notebook.ipynb), [report](final/report.pdf) |
 
 The work focuses on sound analysis: leakage-free validation, calibrated probabilities, error and fairness analysis, and decisions tied to business constraints.
 
