@@ -1,0 +1,52 @@
+{
+  "source": "train\\train.csv",
+  "target": "is_churn",
+  "task": "classification",
+  "id_cols": [
+    "customer_id",
+    "policy_id"
+  ],
+  "num_cols": [
+    "age",
+    "tenure"
+  ],
+  "cat_cols": [
+    "insurance_type",
+    "premium",
+    "payment_frequency",
+    "occupation",
+    "gender",
+    "marital_status"
+  ],
+  "text_cols": [],
+  "datetime_cols": [],
+  "drop_cols": [],
+  "sentinels": {},
+  "high_cardinality": {},
+  "dedup": false,
+  "cv_group": "customer_id",
+  "group_vs_random_gap": null,
+  "conflicting_targets": 62,
+  "time_col": null,
+  "adversarial_auc": null,
+  "cv_scheme": "group",
+  "target_transform": "none",
+  "metric": "roc_auc",
+  "class_weights": true,
+  "weak_features": [
+    "age",
+    "marital_status",
+    "gender"
+  ],
+  "top_features": [
+    "tenure",
+    "payment_frequency",
+    "occupation",
+    "insurance_type",
+    "premium",
+    "age",
+    "marital_status",
+    "gender"
+  ],
+  "high_corr_pairs": []
+}

@@ -1,0 +1,14 @@
+setting,value,source,why
+TARGET,is_churn,user,"target column analysed in the EDA, else sample_submission or the column missing from test"
+ID_COLS,"['customer_id', 'policy_id']",eda,"identifier columns (EDA, else recognised by name)"
+CV_GROUP,customer_id,eda,"identifier repeated across rows, so copies must share a fold"
+TIME_COL,None,computed,no time column
+DROP_COLS,[],eda,constant or quasi-constant (one value >= 99%)
+SENTINELS,{},eda,placeholder values outside the normal range -> missing
+COLUMN_ROLES,2 num / 6 cat / 0 text,eda,role inference shared with the EDA
+TASK,classification,user,string or few-valued target
+CLASS_WEIGHT,True,eda,imbalance ratio 26.0x
+METRIC,roc_auc,eda,"QWK for ordinal, F1 per label for multi-label, RMSE for regression, ROC AUC for binary, macro F1 for multiclass"
+DEDUP,False,eda,no identical rows in the EDA duplicate audit
+CV_SCHEME,group,eda,"repeated ids -> group, drift -> time"
+DROP_WEAK,"['age', 'marital_status', 'gender']",eda,no mutual information and no significant association with the target

@@ -1,0 +1,12 @@
+feature,origin,type
+tenure,raw numeric,numeric
+insurance_type_freq,frequency encoding,numeric
+premium_freq,frequency encoding,numeric
+payment_frequency_freq,frequency encoding,numeric
+occupation_freq,frequency encoding,numeric
+gender_freq,frequency encoding,numeric
+marital_status_freq,frequency encoding,numeric
+insurance_type,raw categorical,categorical
+premium,raw categorical,categorical
+payment_frequency,raw categorical,categorical
+occupation,raw categorical,categorical

@@ -1,0 +1,12 @@
+column,role,dtype,missing,missing_%,unique,unique_%,top_value,top_share_%,example
+customer_id,id,object,0,0.0,4704,94.08,CUST002350,0.18,CUST007264
+policy_id,id,object,0,0.0,5000,100.0,POL007470,0.02,POL007470
+insurance_type,categorical,object,0,0.0,4,0.08,Life,70.04,PA
+premium,categorical,object,0,0.0,5,0.1,<250K,63.019999999999996,<250K
+payment_frequency,categorical,object,0,0.0,5,0.1,MONTHLY,60.519999999999996,SINGLEPREMIUM
+is_churn,target,object,0,0.0,2,0.04, FALSE ,96.3, FALSE 
+age,numeric,int64,0,0.0,53,1.06,24,4.279999999999999,30
+occupation,categorical,object,4792,95.84,48,0.96,KARYAWAN SWASTA,26.442307692307693,KARYAWAN SWASTA
+gender,binary,object,0,0.0,2,0.04,MALE,53.32,FEMALE
+tenure,numeric,int64,0,0.0,157,3.1399999999999997,53,5.52,84
+marital_status,binary,bool,0,0.0,2,0.04,True,58.940000000000005,False

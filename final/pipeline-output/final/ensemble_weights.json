@@ -1,0 +1,6 @@
+{
+  "baseline": 0.0,
+  "lightgbm": 0.5493,
+  "xgboost": 0.0759,
+  "catboost": 0.3748
+}

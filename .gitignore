@@ -1,0 +1,16 @@
+# Preliminary data: download from Kaggle (see README)
+preliminary/data/
+
+# Regenerable model binaries
+*.joblib
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

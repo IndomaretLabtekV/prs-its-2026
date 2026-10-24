@@ -1,0 +1,3 @@
+,macro_F1,ROC_AUC
+naive (majority class),0.4905756495160469,
+GBM random K-fold,0.7634616229779818,0.9790008700289075

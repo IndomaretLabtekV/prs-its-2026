@@ -1,7 +1,0 @@
-candidate,capacity,K,fraud_captured,legitimate_audits,NormalizedRecall
-V2/V3 CatBoost anchor,0.03,4805,4712,93,0.9806451612903226
-Boundary refiner rate=0.100 weight=1.00,0.03,4805,4732,73,0.9848074921956296
-V2/V3 CatBoost anchor,0.05,8008,7778,230,0.9712787212787213
-Boundary refiner rate=0.100 weight=1.00,0.05,8008,7828,180,0.9775224775224776
-V2/V3 CatBoost anchor,0.07,11212,10755,457,0.959240099892972
-Boundary refiner rate=0.100 weight=1.00,0.07,11212,10865,347,0.969051016767749

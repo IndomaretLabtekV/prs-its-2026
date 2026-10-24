@@ -1,0 +1,6 @@
+,count,share_%
+identical rows,0,0.0
+identical ignoring IDs,1005,20.1
+repeated customer_id,296,5.92
+repeated policy_id,0,0.0
+"same features, different target",62,1.24
